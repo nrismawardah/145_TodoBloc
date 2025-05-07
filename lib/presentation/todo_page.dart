@@ -95,6 +95,27 @@ class TodoPage extends StatelessWidget {
                   ],
                 ),
               ),
+              SizedBox(height: 16.0),
+              Expanded(
+                child: BlocBuilder<TodoBloc, TodoState>(
+                  builder: (context, state) {
+                    if (state is TodoLoading) {
+                      return Center(child: CircularProgressIndicator());
+                    } else if (state is TodoLoaded) {
+                      if (state.todos.isEmpty) {
+                        return Center(child: Text('Todo list is empty'));
+                      }
+                      return ListView.builder(
+                        itemCount: state.todos.length,
+                        itemBuilder: (context, index) {
+                          final todo = state.todos[index];
+                          return;
+                        },
+                      );
+                    }
+                  },
+                ),
+              ),
             ],
           ),
         ),
