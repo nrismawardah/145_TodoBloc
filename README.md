@@ -1,6 +1,10 @@
 # todo_app
-
-A new Flutter project.
+<img src="https://github.com/user-attachments/assets/c9488d51-3d49-4d1c-a4cc-c981272a9ee0" height="300">
+<img src="https://github.com/user-attachments/assets/07911719-9bea-4f0a-89b0-4418da938fb3" height="300">
+<img src="https://github.com/user-attachments/assets/f619d2ef-06fe-42a1-a390-23a620d9adb5" height="300">
+<img src="https://github.com/user-attachments/assets/d3aa7a32-f9d4-4731-8f84-06654006fda7" height="300">
+<img src="https://github.com/user-attachments/assets/fe7baa2f-381e-4de7-aca0-479e710aacc2" height="300">
+<img src="https://github.com/user-attachments/assets/cb62453d-545a-42da-b106-a6b2d9ab65b5" height="300">
 
 ## Getting Started
 
