@@ -14,9 +14,16 @@ class TodoPage extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.all(16.0),
           child: Column(
+            spacing: 10,
             children: [
-              Text('Todo List'),
+              SizedBox(height: 25.0),
+              Text(
+                'Todo List',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 10.0),
               Row(
+                spacing: 10,
                 children: [
                   Column(
                     children: [
@@ -33,31 +40,34 @@ class TodoPage extends StatelessWidget {
                           return Text('No date selected');
                         },
                       ),
-                      SizedBox(height: 16.0),
-                      ElevatedButton(
-                        onPressed: () {
-                          showDatePicker(
-                            context: context,
-                            initialDate: DateTime.now(),
-                            firstDate: DateTime(2000),
-                            lastDate: DateTime(2100),
-                          ).then((selectedDate) {
-                            if (selectedDate != null) {
-                              context.read<TodoBloc>().add(
-                                    TodoSelectDate(date: selectedDate),
-                                  );
-                            }
-                          });
-                        },
-                        child: Text('Select Date'),
-                      ),
                     ],
+                  ),
+                  SizedBox(height: 16.0),
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(2000),
+                          lastDate: DateTime(2100),
+                        ).then((selectedDate) {
+                          if (selectedDate != null) {
+                            context.read<TodoBloc>().add(
+                              TodoSelectDate(date: selectedDate),
+                            );
+                          }
+                        });
+                      },
+                      child: Text('Select Date'),
+                    ),
                   ),
                 ],
               ),
               Form(
                 key: _key,
                 child: Row(
+                  spacing: 10,
                   children: [
                     Expanded(
                       child: TextFormField(
@@ -77,15 +87,14 @@ class TodoPage extends StatelessWidget {
                     FilledButton(
                       onPressed: () {
                         if (_key.currentState!.validate()) {
-                          final selectedDate =
-                              context.read<TodoBloc>().state;
+                          final selectedDate = context.read<TodoBloc>().state;
                           if (selectedDate is TodoLoaded) {
                             context.read<TodoBloc>().add(
-                                  TodoEventAdd(
-                                    title: _controller.text,
-                                    date: selectedDate.selectedDate!,
-                                  ),
-                                );
+                              TodoEventAdd(
+                                title: _controller.text,
+                                date: selectedDate.selectedDate!,
+                              ),
+                            );
                             _controller.clear();
                             selectedDate.selectedDate = null;
                           }
@@ -96,7 +105,6 @@ class TodoPage extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 16.0),
               Expanded(
                 child: BlocBuilder<TodoBloc, TodoState>(
                   builder: (context, state) {
@@ -141,9 +149,10 @@ class TodoPage extends StatelessWidget {
                                           ? 'Completed'
                                           : 'Not Completed',
                                       style: TextStyle(
-                                        color: todo.isCompleted
-                                            ? Colors.green
-                                            : Colors.red,
+                                        color:
+                                            todo.isCompleted
+                                                ? Colors.green
+                                                : Colors.red,
                                       ),
                                     ),
                                   ],
@@ -152,8 +161,8 @@ class TodoPage extends StatelessWidget {
                                   value: todo.isCompleted,
                                   onChanged: (value) {
                                     context.read<TodoBloc>().add(
-                                          TodoEventComplete(index: index),
-                                        );
+                                      TodoEventComplete(index: index),
+                                    );
                                   },
                                 ),
                               ],
